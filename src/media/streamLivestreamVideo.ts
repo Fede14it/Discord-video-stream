@@ -118,7 +118,7 @@ export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaU
                     ]);
                 }
             }
-            console.log("command", command);
+            resolve(headers.toString());
 
             command.run();
         } catch (e) {
