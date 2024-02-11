@@ -27,7 +27,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "discord.js-selfbot-v13": "^3.1.4"
+    "discord.js-selfbot-v13": "2.x"
   },
   "scripts": {
     "build": "tsc"
