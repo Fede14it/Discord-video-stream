@@ -23,12 +23,16 @@ export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaU
             videoOutput = new IvfTransformer();
         }
 
-        let headers: map = {
+        let headers: Record<string, string> = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.3",
             "Connection": "keep-alive"
-        }
+        };
+
+        // Supponendo che customHeaders sia un oggetto di tipo map contenente le intestazioni personalizzate
         if (customHeaders) {
-            headers = { ...headers, ...customHeaders };
+            for (const [key, value] of Object.entries(customHeaders)) {
+                headers[key] = value;
+            }
         }
 
         let isHttpUrl = false;
