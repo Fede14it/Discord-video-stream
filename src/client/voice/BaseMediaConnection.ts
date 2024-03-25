@@ -53,7 +53,7 @@ export abstract class BaseMediaConnection {
     public abstract get serverId(): string;
 
     stop(): void {
-        clearInterval(this.interval);
+        clearInterval(this.interval as NodeJS.Timeout);
         this.status.started = false;
         this.ws?.close();
         this.udp?.stop();
@@ -170,7 +170,7 @@ export abstract class BaseMediaConnection {
 
     setupHeartbeat(interval: number): void {
         if (this.interval) {
-            clearInterval(this.interval);
+            clearInterval(this.interval as unknown as number);
         }
         this.interval = setInterval(() => {
             this.sendOpcode(VoiceOpCodes.HEARTBEAT, 42069);
