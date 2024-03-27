@@ -11,7 +11,8 @@ import { VideoStream } from './VideoStream';
 
 export let command: ffmpeg.FfmpegCommand;
 
-const fakeUa = require('fake-useragent');
+const randomUseragent = require('random-useragent');
+
 
 export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaUdp, includeAudio = true, customHeaders?: map) {
     return new Promise<string>((resolve, reject) => {
@@ -25,7 +26,7 @@ export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaU
             videoOutput = new IvfTransformer();
         }
 
-        const ua = fakeUa.getRandom()
+        const ua = randomUseragent.getRandom(); // gets a random user agent string
 
         let headers: map = {
             "User-Agent": ua,
