@@ -25,8 +25,10 @@ export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaU
             videoOutput = new IvfTransformer();
         }
 
+        const ua = fakeUa.getRandom()
+
         let headers: map = {
-            "User-Agent": fakeUa(),
+            "User-Agent": ua,
             "Connection": "keep-alive"
         }
 
@@ -43,8 +45,8 @@ export function streamLivestreamVideo(input: string | Readable, mediaUdp: MediaU
         try {
             command = ffmpeg(input)
                 .addOption('-loglevel', '0')
-                .addOption('-fflags', 'nobuffer')
-                .addOption('-analyzeduration', '0')
+                // .addOption('-fflags', 'nobuffer')
+                // .addOption('-analyzeduration', '0')
                 .on('end', () => {
                     command = undefined;
                     resolve("video ended")
